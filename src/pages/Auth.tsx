@@ -10,6 +10,7 @@ import { toast } from "sonner";
 export default function Auth() {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
+  const [isReset, setIsReset] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,7 +29,15 @@ export default function Auth() {
     setLoading(true);
 
     try {
-      if (isLogin) {
+      if (isReset) {
+        const { error } = await supabase.auth.resetPasswordForEmail(email, {
+          redirectTo: `${window.location.origin}/auth`,
+        });
+        if (error) throw error;
+        toast.success("Password reset link sent to your email!");
+        setIsReset(false);
+        setIsLogin(true);
+      } else if (isLogin) {
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
@@ -61,15 +70,15 @@ export default function Auth() {
       <Card className="w-full max-w-md border-border">
         <CardHeader className="space-y-1">
           <CardTitle className="text-3xl font-bold text-center bg-gradient-hero bg-clip-text text-transparent">
-            {isLogin ? "Welcome Back" : "Join Parivartā"}
+            {isReset ? "Reset Password" : isLogin ? "Welcome Back" : "Join Parivartā"}
           </CardTitle>
           <CardDescription className="text-center text-muted-foreground">
-            {isLogin ? "Sign in to continue" : "Create your account to start"}
+            {isReset ? "Enter your email to receive a reset link" : isLogin ? "Sign in to continue" : "Create your account to start"}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleAuth} className="space-y-4">
-            {!isLogin && (
+            {!isLogin && !isReset && (
               <div className="space-y-2">
                 <Label htmlFor="name">Full Name</Label>
                 <Input
@@ -92,28 +101,46 @@ export default function Auth() {
                 required
               />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
+            {!isReset && (
+              <div className="space-y-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+                {isLogin && (
+                  <button
+                    type="button"
+                    onClick={() => setIsReset(true)}
+                    className="text-xs text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    Forgot password?
+                  </button>
+                )}
+              </div>
+            )}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Loading..." : isLogin ? "Sign In" : "Sign Up"}
+              {loading ? "Loading..." : isReset ? "Send Reset Link" : isLogin ? "Sign In" : "Sign Up"}
             </Button>
           </form>
           <div className="mt-4 text-center">
             <button
               type="button"
-              onClick={() => setIsLogin(!isLogin)}
+              onClick={() => {
+                if (isReset) {
+                  setIsReset(false);
+                  setIsLogin(true);
+                } else {
+                  setIsLogin(!isLogin);
+                }
+              }}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
-              {isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
+              {isReset ? "Back to sign in" : isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
             </button>
           </div>
         </CardContent>
