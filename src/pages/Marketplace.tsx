@@ -25,8 +25,10 @@ export default function Marketplace() {
       if (category !== "All") {
         query = query.eq("category", category);
       }
-      if (type !== "All") {
-        query = query.eq("type", type);
+      if (type === "Sale") {
+        query = query.eq("available_for_sale", true);
+      } else if (type === "Rent") {
+        query = query.eq("available_for_rent", true);
       }
       if (searchQuery) {
         query = query.ilike("title", `%${searchQuery}%`);

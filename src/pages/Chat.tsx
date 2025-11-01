@@ -204,9 +204,14 @@ export default function Chat() {
                         >
                           <p className="break-words">{msg.message}</p>
                           <p className="text-xs mt-1 opacity-70">
+                            {new Date(msg.timestamp).toLocaleDateString([], {
+                              month: "short",
+                              day: "numeric",
+                            })}{" "}
                             {new Date(msg.timestamp).toLocaleTimeString([], {
-                              hour: "2-digit",
+                              hour: "numeric",
                               minute: "2-digit",
+                              hour12: true,
                             })}
                           </p>
                         </div>

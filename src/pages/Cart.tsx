@@ -69,7 +69,10 @@ export default function Cart() {
     }
   };
 
-  const totalPrice = cartItems.reduce((sum, item) => sum + parseFloat(item.sp), 0);
+  const totalPrice = cartItems.reduce((sum, item) => {
+    const price = item.available_for_sale && item.sale_price ? item.sale_price : 0;
+    return sum + parseFloat(price.toString());
+  }, 0);
 
   if (loading) {
     return (
@@ -101,9 +104,9 @@ export default function Cart() {
                     <div className="flex gap-6">
                       <Link to={`/product/${item.id}`} className="shrink-0">
                         <div className="h-32 w-32 rounded-lg overflow-hidden bg-muted">
-                          {item.image_url ? (
+                          {item.image_urls && item.image_urls.length > 0 ? (
                             <img
-                              src={item.image_url}
+                              src={item.image_urls[0]}
                               alt={item.title}
                               className="h-full w-full object-cover"
                             />
@@ -121,11 +124,20 @@ export default function Cart() {
                           </h3>
                         </Link>
                         <p className="text-sm text-muted-foreground">{item.category}</p>
-                        <p className="text-sm text-muted-foreground">
-                          Type: <span className="font-medium">{item.type}</span>
-                        </p>
+                        <div className="flex gap-2">
+                          {item.available_for_sale && (
+                            <span className="text-xs bg-primary/10 text-primary px-2 py-1 rounded">For Sale</span>
+                          )}
+                          {item.available_for_rent && (
+                            <span className="text-xs bg-secondary/50 text-foreground px-2 py-1 rounded">For Rent</span>
+                          )}
+                        </div>
                         <div className="flex items-center justify-between pt-2">
-                          <p className="text-2xl font-bold text-primary">₹{item.sp}</p>
+                          {item.available_for_sale && item.sale_price ? (
+                            <p className="text-2xl font-bold text-primary">₹{item.sale_price}</p>
+                          ) : (
+                            <p className="text-sm text-muted-foreground">Not available for purchase</p>
+                          )}
                           <Button
                             variant="destructive"
                             size="sm"

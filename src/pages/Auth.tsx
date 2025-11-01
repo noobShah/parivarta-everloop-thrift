@@ -17,6 +17,18 @@ export default function Auth() {
   const [name, setName] = useState("");
 
   useEffect(() => {
+    // Check if user just came from password reset
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    const type = hashParams.get('type');
+    
+    if (type === 'recovery') {
+      // User clicked password reset link, show password update form
+      setIsReset(false);
+      setIsLogin(false);
+      toast.info("Please enter your new password");
+      return;
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
         navigate("/");
@@ -29,6 +41,21 @@ export default function Auth() {
     setLoading(true);
 
     try {
+      // Check if this is a password update after reset
+      const hashParams = new URLSearchParams(window.location.hash.substring(1));
+      const type = hashParams.get('type');
+      
+      if (type === 'recovery' && !isLogin && !isReset) {
+        // Update password after reset
+        const { error } = await supabase.auth.updateUser({
+          password: password,
+        });
+        if (error) throw error;
+        toast.success("Password updated successfully!");
+        window.location.href = "/";
+        return;
+      }
+
       if (isReset) {
         const { error } = await supabase.auth.resetPasswordForEmail(email, {
           redirectTo: `${window.location.origin}/auth`,
@@ -70,10 +97,22 @@ export default function Auth() {
       <Card className="w-full max-w-md border-border">
         <CardHeader className="space-y-1">
           <CardTitle className="text-3xl font-bold text-center bg-gradient-hero bg-clip-text text-transparent">
-            {isReset ? "Reset Password" : isLogin ? "Welcome Back" : "Join Parivartā"}
+            {(() => {
+              const hashParams = new URLSearchParams(window.location.hash.substring(1));
+              if (hashParams.get('type') === 'recovery') return "Set New Password";
+              if (isReset) return "Reset Password";
+              if (isLogin) return "Welcome Back";
+              return "Join Parivartā";
+            })()}
           </CardTitle>
           <CardDescription className="text-center text-muted-foreground">
-            {isReset ? "Enter your email to receive a reset link" : isLogin ? "Sign in to continue" : "Create your account to start"}
+            {(() => {
+              const hashParams = new URLSearchParams(window.location.hash.substring(1));
+              if (hashParams.get('type') === 'recovery') return "Enter your new password below";
+              if (isReset) return "Enter your email to receive a reset link";
+              if (isLogin) return "Sign in to continue";
+              return "Create your account to start";
+            })()}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -86,21 +125,26 @@ export default function Auth() {
                   placeholder="Your name"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  required={!isLogin}
+                  required={!isLogin && !isReset}
                 />
               </div>
             )}
-            <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
-              <Input
-                id="email"
-                type="email"
-                placeholder="you@example.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+            {!(() => {
+              const hashParams = new URLSearchParams(window.location.hash.substring(1));
+              return hashParams.get('type') === 'recovery';
+            })() && (
+              <div className="space-y-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="you@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+            )}
             {!isReset && (
               <div className="space-y-2">
                 <Label htmlFor="password">Password</Label>
@@ -124,24 +168,35 @@ export default function Auth() {
               </div>
             )}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Loading..." : isReset ? "Send Reset Link" : isLogin ? "Sign In" : "Sign Up"}
+              {loading ? "Loading..." : (() => {
+                const hashParams = new URLSearchParams(window.location.hash.substring(1));
+                if (hashParams.get('type') === 'recovery') return "Update Password";
+                if (isReset) return "Send Reset Link";
+                if (isLogin) return "Sign In";
+                return "Sign Up";
+              })()}
             </Button>
           </form>
           <div className="mt-4 text-center">
-            <button
-              type="button"
-              onClick={() => {
-                if (isReset) {
-                  setIsReset(false);
-                  setIsLogin(true);
-                } else {
-                  setIsLogin(!isLogin);
-                }
-              }}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {isReset ? "Back to sign in" : isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
-            </button>
+            {!(() => {
+              const hashParams = new URLSearchParams(window.location.hash.substring(1));
+              return hashParams.get('type') === 'recovery';
+            })() && (
+              <button
+                type="button"
+                onClick={() => {
+                  if (isReset) {
+                    setIsReset(false);
+                    setIsLogin(true);
+                  } else {
+                    setIsLogin(!isLogin);
+                  }
+                }}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {isReset ? "Back to sign in" : isLogin ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
+              </button>
+            )}
           </div>
         </CardContent>
       </Card>

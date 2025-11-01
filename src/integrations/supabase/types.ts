@@ -101,49 +101,58 @@ export type Database = {
       }
       products: {
         Row: {
+          available_for_rent: boolean | null
+          available_for_sale: boolean | null
           category: string
           condition: string
           cp: number
           created_at: string
           description: string
           id: string
-          image_url: string | null
+          image_urls: string[] | null
           quality: number
-          sp: number
+          rent_duration_months: number | null
+          rent_price_per_month: number | null
+          sale_price: number | null
           title: string
-          type: string
           updated_at: string
           user_id: string
           year_bought: number
         }
         Insert: {
+          available_for_rent?: boolean | null
+          available_for_sale?: boolean | null
           category: string
           condition: string
           cp: number
           created_at?: string
           description: string
           id?: string
-          image_url?: string | null
+          image_urls?: string[] | null
           quality: number
-          sp: number
+          rent_duration_months?: number | null
+          rent_price_per_month?: number | null
+          sale_price?: number | null
           title: string
-          type: string
           updated_at?: string
           user_id: string
           year_bought: number
         }
         Update: {
+          available_for_rent?: boolean | null
+          available_for_sale?: boolean | null
           category?: string
           condition?: string
           cp?: number
           created_at?: string
           description?: string
           id?: string
-          image_url?: string | null
+          image_urls?: string[] | null
           quality?: number
-          sp?: number
+          rent_duration_months?: number | null
+          rent_price_per_month?: number | null
+          sale_price?: number | null
           title?: string
-          type?: string
           updated_at?: string
           user_id?: string
           year_bought?: number
