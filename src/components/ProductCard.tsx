@@ -30,9 +30,9 @@ export const ProductCard = ({
   const displayImage = image_urls && image_urls.length > 0 ? image_urls[0] : null;
   
   return (
-    <Card className="group overflow-hidden border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20">
+    <Card className="group overflow-hidden border-4 border-border hover:border-primary retro-card bg-card">
       <Link to={`/product/${id}`}>
-        <div className="aspect-square overflow-hidden bg-muted relative">
+        <div className="aspect-square overflow-hidden bg-muted relative rounded-t-3xl">
           {displayImage ? (
             <img
               src={displayImage}
@@ -40,12 +40,12 @@ export const ProductCard = ({
               className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-muted-foreground">
-              No Image
+            <div className="flex h-full w-full items-center justify-center text-muted-foreground bg-gradient-sunburst">
+              <span className="text-4xl">📦</span>
             </div>
           )}
           {image_urls && image_urls.length > 1 && (
-            <div className="absolute bottom-2 right-2 bg-background/80 backdrop-blur px-2 py-1 rounded-full text-xs">
+            <div className="absolute bottom-2 right-2 bg-background/90 backdrop-blur px-3 py-1 rounded-full text-xs font-semibold">
               +{image_urls.length - 1} more
             </div>
           )}
@@ -54,15 +54,15 @@ export const ProductCard = ({
       <CardContent className="p-4">
         <Link to={`/product/${id}`}>
           <div className="mb-2 flex items-start justify-between gap-2">
-            <h3 className="font-semibold text-lg line-clamp-1 group-hover:text-primary transition-colors">
+            <h3 className="font-groovy text-lg line-clamp-1 group-hover:text-primary transition-colors">
               {title}
             </h3>
             <div className="flex gap-1 shrink-0">
               {available_for_sale && (
-                <Badge variant="default" className="text-xs">Sale</Badge>
+                <Badge variant="default" className="text-xs rounded-full">Sale</Badge>
               )}
               {available_for_rent && (
-                <Badge variant="secondary" className="text-xs">Rent</Badge>
+                <Badge variant="secondary" className="text-xs rounded-full">Rent</Badge>
               )}
             </div>
           </div>
@@ -76,18 +76,18 @@ export const ProductCard = ({
                 <span className="text-sm text-muted-foreground">₹{rent_price_per_month}/mo</span>
               )}
             </div>
-            <span className="text-xs text-muted-foreground">Quality: {quality}/10</span>
+            <span className="text-xs bg-accent/20 px-2 py-1 rounded-full font-semibold">★ {quality}/10</span>
           </div>
         </Link>
       </CardContent>
       <CardFooter className="p-4 pt-0 gap-2">
-        <Button size="sm" className="flex-1" asChild>
+        <Button size="sm" className="flex-1 rounded-full" asChild>
           <Link to={`/product/${id}`}>
             <ShoppingCart className="mr-2 h-4 w-4" />
             View
           </Link>
         </Button>
-        <Button size="sm" variant="secondary" asChild>
+        <Button size="sm" variant="secondary" className="rounded-full" asChild>
           <Link to={`/product/${id}`}>
             <MessageSquare className="h-4 w-4" />
           </Link>

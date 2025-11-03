@@ -47,16 +47,25 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        pink: "hsl(var(--pink))",
-        tan: "hsl(var(--tan))",
-        blush: "hsl(var(--blush))",
-        vanilla: "hsl(var(--vanilla))",
-        mint: "hsl(var(--mint))",
+        terracotta: "hsl(var(--terracotta))",
+        sage: "hsl(var(--sage))",
+        mustard: "hsl(var(--mustard))",
+        cream: "hsl(var(--cream))",
+        olive: "hsl(var(--olive))",
+        rust: "hsl(var(--rust))",
+        sand: "hsl(var(--sand))",
       },
       backgroundImage: {
         'gradient-hero': 'var(--gradient-hero)',
+        'gradient-sunburst': 'var(--gradient-sunburst)',
         'gradient-card': 'var(--gradient-card)',
         'gradient-accent': 'var(--gradient-accent)',
+        'gradient-warm': 'var(--gradient-warm)',
+      },
+      fontFamily: {
+        groovy: ['Righteous', 'cursive'],
+        handwritten: ['Caveat', 'cursive'],
+        sans: ['Poppins', 'system-ui', 'sans-serif'],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -80,10 +89,28 @@ export default {
             height: "0",
           },
         },
+        "rotate-slow": {
+          from: {
+            transform: "rotate(0deg)",
+          },
+          to: {
+            transform: "rotate(360deg)",
+          },
+        },
+        "bounce-gentle": {
+          "0%, 100%": {
+            transform: "translateY(0)",
+          },
+          "50%": {
+            transform: "translateY(-10px)",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "rotate-slow": "rotate-slow 20s linear infinite",
+        "bounce-gentle": "bounce-gentle 2s ease-in-out infinite",
       },
     },
   },

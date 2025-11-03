@@ -8,53 +8,58 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Parivartā Brand Colors - Eco-conscious warm dark theme */
-    --background: 20 20% 15%;  /* Deep warm black */
-    --foreground: 30 50% 92%;  /* Vanilla cream */
+    /* Parivartā Retro 70s Brand Colors - Warm Earth Tones */
+    --background: 35 25% 94%;  /* Cream background */
+    --foreground: 25 35% 25%;  /* Deep brown text */
 
-    --card: 20 20% 18%;
-    --card-foreground: 30 50% 92%;
+    --card: 35 30% 98%;
+    --card-foreground: 25 35% 25%;
 
-    --popover: 20 20% 16%;
-    --popover-foreground: 30 50% 92%;
+    --popover: 35 30% 96%;
+    --popover-foreground: 25 35% 25%;
 
-    --primary: 23 50% 44%;  /* Copper - main CTA color */
-    --primary-foreground: 30 50% 92%;
+    --primary: 16 65% 55%;  /* Burnt orange - main CTA */
+    --primary-foreground: 35 25% 94%;
 
-    --secondary: 165 15% 54%;  /* Sage green - secondary actions */
-    --secondary-foreground: 30 50% 92%;
+    --secondary: 85 25% 45%;  /* Olive green */
+    --secondary-foreground: 35 25% 94%;
 
-    --muted: 20 20% 25%;
-    --muted-foreground: 30 40% 74%;  /* Tan for muted text */
+    --muted: 35 20% 88%;
+    --muted-foreground: 25 25% 45%;
 
-    --accent: 165 40% 80%;  /* Mint - for highlights */
-    --accent-foreground: 20 20% 15%;
+    --accent: 45 75% 58%;  /* Mustard yellow */
+    --accent-foreground: 25 35% 25%;
 
     --destructive: 0 70% 50%;
-    --destructive-foreground: 30 50% 92%;
+    --destructive-foreground: 35 25% 94%;
 
-    --border: 20 20% 30%;
-    --input: 20 20% 25%;
-    --ring: 23 50% 44%;  /* Copper ring */
+    --border: 35 20% 82%;
+    --input: 35 25% 96%;
+    --ring: 16 65% 55%;
 
-    --radius: 0.75rem;  /* Rounded, modern feel */
+    --radius: 1.5rem;  /* Extra rounded for retro feel */
 
-    /* Additional brand colors */
-    --pink: 9 40% 66%;  /* Soft muted rose pink */
-    --tan: 30 40% 74%;  /* Warm beige-tan */
-    --blush: 15 50% 88%;  /* Light pastel blush */
-    --vanilla: 30 50% 92%;  /* Creamy off-white */
-    --mint: 165 40% 80%;  /* Light pastel mint */
-
-    /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(23 50% 44%), hsl(9 40% 66%));
-    --gradient-card: linear-gradient(180deg, hsl(20 20% 18%), hsl(20 20% 15%));
-    --gradient-accent: linear-gradient(90deg, hsl(165 40% 80%), hsl(165 15% 54%));
+    /* Retro Color Palette */
+    --terracotta: 16 65% 55%;  /* Burnt orange/terracotta */
+    --sage: 120 15% 55%;  /* Sage green */
+    --mustard: 45 75% 58%;  /* Mustard yellow */
+    --cream: 35 25% 94%;  /* Cream */
+    --burnt-orange: 16 75% 50%;  /* Bold burnt orange */
+    --olive: 85 25% 45%;  /* Olive green */
+    --rust: 16 55% 45%;  /* Rust color */
+    --sand: 40 30% 75%;  /* Sandy beige */
+    
+    /* Gradients - Retro sunburst & earth tones */
+    --gradient-hero: linear-gradient(135deg, hsl(16 65% 55%), hsl(45 75% 58%), hsl(120 15% 55%));
+    --gradient-sunburst: radial-gradient(circle, hsl(45 75% 58%), hsl(16 65% 55%), hsl(16 55% 45%));
+    --gradient-card: linear-gradient(180deg, hsl(35 30% 98%), hsl(35 25% 94%));
+    --gradient-accent: linear-gradient(90deg, hsl(120 15% 55%), hsl(85 25% 45%));
+    --gradient-warm: linear-gradient(135deg, hsl(16 75% 50%), hsl(16 55% 45%));
   }
 }
 
 @layer base {
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Righteous&family=Caveat:wght@400;700&display=swap');
 
   * {
     @apply border-border;
@@ -67,5 +72,38 @@ All colors MUST be HSL.
 
   h1, h2, h3, h4, h5, h6 {
     @apply font-semibold;
+    font-family: 'Righteous', cursive;
+  }
+}
+
+@layer utilities {
+  .font-groovy {
+    font-family: 'Righteous', cursive;
+  }
+  
+  .font-handwritten {
+    font-family: 'Caveat', cursive;
+  }
+  
+  .retro-shadow {
+    box-shadow: 8px 8px 0px hsl(var(--rust));
+  }
+  
+  .retro-card {
+    border-radius: var(--radius);
+    box-shadow: 4px 4px 0px hsl(var(--border));
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .retro-card:hover {
+    transform: translate(-2px, -2px);
+    box-shadow: 6px 6px 0px hsl(var(--border));
+  }
+
+  .wavy-divider {
+    width: 100%;
+    height: 60px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23f5efe6'/%3E%3C/svg%3E") no-repeat;
+    background-size: cover;
   }
 }

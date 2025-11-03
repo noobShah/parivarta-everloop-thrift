@@ -26,19 +26,34 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link to="/" className="flex items-center space-x-2">
-          <div className="rounded-full bg-gradient-hero p-2">
-            <Home className="h-5 w-5 text-primary-foreground" />
+    <nav className="sticky top-0 z-50 w-full border-b-4 border-primary/20 bg-card/98 backdrop-blur supports-[backdrop-filter]:bg-card/95 shadow-md">
+      <div className="container mx-auto flex h-20 items-center justify-between px-4">
+        <Link to="/" className="flex items-center space-x-3 group">
+          <div className="rounded-full bg-gradient-hero p-3 retro-shadow group-hover:scale-110 transition-transform">
+            <Home className="h-6 w-6 text-primary-foreground" />
           </div>
-          <span className="text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+          <span className="text-3xl font-groovy bg-gradient-hero bg-clip-text text-transparent">
             Parivartā
           </span>
         </Link>
 
-        <div className="flex items-center gap-2 md:gap-4">
-          <Button variant="ghost" size="icon" asChild>
+        <div className="hidden md:flex items-center gap-6">
+          <Link to="/" className="text-foreground hover:text-primary transition-colors font-medium">
+            Home
+          </Link>
+          <Link to="/about" className="text-foreground hover:text-primary transition-colors font-medium">
+            About
+          </Link>
+          <Link to="/marketplace" className="text-foreground hover:text-primary transition-colors font-medium">
+            Marketplace
+          </Link>
+          <Link to="/contact" className="text-foreground hover:text-primary transition-colors font-medium">
+            Contact
+          </Link>
+        </div>
+
+        <div className="flex items-center gap-2 md:gap-3">
+          <Button variant="ghost" size="icon" asChild className="md:hidden">
             <Link to="/">
               <Home className="h-5 w-5" />
             </Link>
@@ -65,12 +80,12 @@ export const Navbar = () => {
                   <User className="h-5 w-5" />
                 </Link>
               </Button>
-              <Button variant="secondary" onClick={handleLogout} size="sm">
+              <Button variant="secondary" onClick={handleLogout} size="sm" className="hidden md:inline-flex">
                 Logout
               </Button>
             </>
           ) : (
-            <Button asChild>
+            <Button asChild className="retro-shadow">
               <Link to="/auth">Sign In</Link>
             </Button>
           )}
