@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Link } from "react-router-dom";
+import { categoryLink } from "@/lib/utils";
 import { Phone, Mail, Instagram, Linkedin, Megaphone, Send, MapPin } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -57,7 +58,7 @@ export default function Contact() {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-hero">
         <div className="container mx-auto px-4 text-center">
-          <Phone className="h-16 w-16 text-primary mx-auto mb-6 animate-bounce-gentle" />
+          <Phone className="h-16 w-16 text-white mx-auto mb-6 animate-bounce-gentle" />
           <h1 className="text-5xl md:text-6xl font-groovy text-foreground mb-4">
             Let's Connect & Collaborate
           </h1>
@@ -137,7 +138,7 @@ export default function Contact() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full retro-shadow">
+                <Button type="submit" size="lg" className="w-full">
                   Send Your Vibes <Send className="ml-2 h-4 w-4" />
                 </Button>
               </form>
@@ -150,12 +151,12 @@ export default function Contact() {
       <section className="py-16 bg-gradient-accent">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            <div className="retro-card bg-sage/30 p-6 text-center">
+            <div className="retro-card bg-gradient-green p-6 text-center">
               <div className="w-16 h-16 bg-sage rounded-full flex items-center justify-center mx-auto mb-4">
                 <Mail className="h-8 w-8 text-cream" />
               </div>
               <h3 className="font-groovy text-xl text-foreground mb-2">Email Us</h3>
-              <p className="text-sm text-muted-foreground">hello@parivarta.com</p>
+              <p className="text-sm text-white">hello@parivarta.com</p>
             </div>
 
             <div className="retro-card bg-terracotta/30 p-6 text-center">
@@ -166,7 +167,7 @@ export default function Contact() {
                 </div>
               </div>
               <h3 className="font-groovy text-xl text-foreground mb-2">Social Media</h3>
-              <p className="text-sm text-muted-foreground">@parivarta.india</p>
+              <p className="text-sm text-white">@parivarta.india</p>
             </div>
 
             <div className="retro-card bg-mustard/30 p-6 text-center">
@@ -174,7 +175,7 @@ export default function Contact() {
                 <Megaphone className="h-8 w-8 text-foreground" />
               </div>
               <h3 className="font-groovy text-xl text-foreground mb-2">Campus Program</h3>
-              <p className="text-sm text-muted-foreground">Become an Ambassador</p>
+              <p className="text-sm text-white">Become an Ambassador</p>
             </div>
           </div>
         </div>
@@ -185,9 +186,6 @@ export default function Contact() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-12">
-              <div className="inline-block w-20 h-20 rounded-full bg-gradient-hero flex items-center justify-center mb-4">
-                <span className="text-4xl">?</span>
-              </div>
               <h2 className="text-4xl font-groovy text-foreground">Quick Answers</h2>
             </div>
 
@@ -234,14 +232,14 @@ export default function Contact() {
       </section>
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-gradient-warm">
+      <section className="py-16 bg-sand">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
             <div className="text-6xl mb-6">💿</div>
-            <h2 className="text-4xl font-groovy text-primary-foreground mb-4">
+            <h2 className="text-4xl font-groovy mb-4">
               Join Our Eco-Tribe
             </h2>
-            <p className="text-primary-foreground/90 mb-6 text-lg">
+            <p className="mb-6 text-lg">
               Get sustainability tips, exclusive deals, and community updates
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -259,7 +257,7 @@ export default function Contact() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-olive text-cream py-12">
+      <footer className="bg-sage text-cream py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -281,10 +279,10 @@ export default function Contact() {
             <div>
               <h4 className="font-semibold mb-4">Categories</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/marketplace?category=Clothing & Accessories" className="hover:text-primary transition-colors">Clothing</Link></li>
-                <li><Link to="/marketplace?category=Gadgets" className="hover:text-primary transition-colors">Gadgets</Link></li>
-                <li><Link to="/marketplace?category=Furniture" className="hover:text-primary transition-colors">Furniture</Link></li>
-                <li><Link to="/marketplace?category=Home & Kitchen" className="hover:text-primary transition-colors">Home & Kitchen</Link></li>
+                <li><Link to={categoryLink("Clothing & Accessories")} className="hover:text-primary transition-colors">Clothing</Link></li>
+                <li><Link to={categoryLink("Gadgets")} className="hover:text-primary transition-colors">Gadgets</Link></li>
+                <li><Link to={categoryLink("Furniture")} className="hover:text-primary transition-colors">Furniture</Link></li>
+                <li><Link to={categoryLink("Home & Kitchen")} className="hover:text-primary transition-colors">Home & Kitchen</Link></li>
               </ul>
             </div>
             <div>

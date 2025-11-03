@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
+import { categoryLink } from "@/lib/utils";
 import { CategoryCard } from "@/components/CategoryCard";
 import { ProductCard } from "@/components/ProductCard";
 import { Button } from "@/components/ui/button";
@@ -22,20 +23,7 @@ import {
   CheckCircle2
 } from "lucide-react";
 
-const categories = [
-  { name: "Clothing & Accessories", icon: Shirt, to: "/marketplace?category=Clothing & Accessories" },
-  { name: "Gadgets", icon: Smartphone, to: "/marketplace?category=Gadgets" },
-  { name: "Furniture", icon: Sofa, to: "/marketplace?category=Furniture" },
-  { name: "Home & Kitchen", icon: Home, to: "/marketplace?category=Home & Kitchen" },
-  { name: "Antique & Décor", icon: Gem, to: "/marketplace?category=Antique & Décor" },
-];
 
-const trustBadges = [
-  { icon: Shield, text: "Verified Sellers" },
-  { icon: CheckCircle2, text: "Secure Payments" },
-  { icon: Leaf, text: "5-10% Commission" },
-  { icon: Star, text: "Eco-Certified" },
-];
 
 const howItWorks = [
   { step: "List", icon: ShoppingBag, description: "Upload your pre-loved items" },
@@ -76,7 +64,7 @@ export default function Index() {
         
         <div className="container mx-auto px-4 text-center relative z-10">
           <div className="mb-6 inline-block">
-            <RefreshCw className="h-16 w-16 text-primary animate-rotate-slow" />
+            <RefreshCw className="h-16 w-16 text-hsl(0, 0%, 15%) animate-rotate-slow" />
           </div>
           
           <h1 className="text-5xl md:text-7xl font-groovy text-foreground mb-6 leading-tight">
@@ -88,7 +76,7 @@ export default function Index() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button asChild size="lg" className="text-lg px-8 py-6 retro-shadow">
+            <Button asChild size="lg" className="text-lg px-8 py-6">
               <Link to="/dashboard">
                 Start Selling <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
@@ -99,41 +87,7 @@ export default function Index() {
           </div>
         </div>
       </section>
-
-      {/* Wavy Divider */}
-      <div className="wavy-divider"></div>
-
-      {/* Trust Badges Section */}
-      <section className="py-12 bg-card">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {trustBadges.map((badge, index) => (
-              <div 
-                key={index}
-                className="flex flex-col items-center justify-center p-6 bg-background rounded-full aspect-square retro-card"
-              >
-                <badge.icon className="h-8 w-8 text-primary mb-2" />
-                <p className="text-sm font-semibold text-center">{badge.text}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Showcase */}
-      <section className="py-16 bg-background">
-        <div className="container mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-groovy text-center mb-12 text-foreground">
-            Browse by Category
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-            {categories.map((category) => (
-              <CategoryCard key={category.name} {...category} />
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
       {/* How It Works - The Loop */}
       <section className="py-16 bg-gradient-card">
         <div className="container mx-auto px-4">
@@ -149,7 +103,7 @@ export default function Index() {
               {howItWorks.map((item, index) => (
                 <div key={index} className="flex flex-col items-center text-center">
                   <div className="relative mb-4">
-                    <div className="w-24 h-24 rounded-full bg-gradient-hero flex items-center justify-center retro-shadow">
+                    <div className="w-24 h-24 rounded-full bg-gradient-hero flex items-center justify-center">
                       <item.icon className="h-10 w-10 text-primary-foreground" />
                     </div>
                     {index < howItWorks.length - 1 && (
@@ -206,14 +160,14 @@ export default function Index() {
       )}
 
       {/* Newsletter Section */}
-      <section className="py-16 bg-gradient-warm">
+      <section className="py-16 bg-sand">
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto text-center">
-            <Leaf className="h-12 w-12 text-primary-foreground mx-auto mb-4 animate-bounce-gentle" />
-            <h2 className="text-4xl font-groovy text-primary-foreground mb-4">
+            <Leaf className="h-12 w-12  mx-auto mb-4 animate-bounce-gentle" />
+            <h2 className="text-4xl font-groovy mb-4">
               Subscribe to our eco-vibes
             </h2>
-            <p className="text-primary-foreground/90 mb-6 text-lg">
+            <p className=" mb-6 text-lg">
               Get sustainability tips, exclusive deals, and community updates
             </p>
             <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
@@ -222,7 +176,7 @@ export default function Index() {
                 placeholder="Your email" 
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-background text-foreground border-2 border-primary-foreground/20"
+                className="bg-background border-2 border-black"
               />
               <Button className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 font-semibold">
                 Loop Me In!
@@ -233,7 +187,7 @@ export default function Index() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-olive text-cream py-12">
+      <footer className="bg-sage text-cream py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -255,10 +209,11 @@ export default function Index() {
             <div>
               <h4 className="font-semibold mb-4">Categories</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/marketplace?category=Clothing & Accessories" className="hover:text-primary transition-colors">Clothing</Link></li>
-                <li><Link to="/marketplace?category=Gadgets" className="hover:text-primary transition-colors">Gadgets</Link></li>
-                <li><Link to="/marketplace?category=Furniture" className="hover:text-primary transition-colors">Furniture</Link></li>
-                <li><Link to="/marketplace?category=Home & Kitchen" className="hover:text-primary transition-colors">Home & Kitchen</Link></li>
+                <li><Link to={categoryLink("Clothing & Accessories")} className="hover:text-primary transition-colors">Clothing & Accessories</Link></li>
+                <li><Link to={categoryLink("Gadgets")} className="hover:text-primary transition-colors">Gadgets</Link></li>
+                <li><Link to={categoryLink("Furniture")} className="hover:text-primary transition-colors">Furniture</Link></li>
+                <li><Link to={categoryLink("Home & Kitchen")} className="hover:text-primary transition-colors">Home & Kitchen</Link></li>
+                <li><Link to={categoryLink("Antique & Décor")} className="hover:text-primary transition-colors">Antique & Décor</Link></li>
               </ul>
             </div>
             <div>

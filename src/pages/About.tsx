@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { categoryLink } from "@/lib/utils";
 import { 
   Heart, 
   Target, 
@@ -54,15 +55,15 @@ export default function About() {
               <h1 className="text-5xl md:text-6xl font-groovy text-foreground mb-6">
                 The Everloop Story
               </h1>
-              <p className="text-xl text-foreground/80 mb-4">
+              <p className="text-xl text-white mb-4">
                 Where Sustainability Meets Style
               </p>
-              <p className="text-lg text-foreground/70">
+              <p className="text-lg text-white">
                 Born from a vision to transform how India shops, Parivartā is more than a marketplace—it's a movement towards conscious consumption and environmental responsibility.
               </p>
             </div>
             <div className="relative">
-              <div className="w-full aspect-square rounded-full bg-gradient-sunburst flex items-center justify-center retro-shadow">
+              <div className="w-full aspect-square rounded-full bg-gradient-sun flex items-center justify-center">
                 <Heart className="h-32 w-32 text-primary animate-bounce-gentle" />
                 <RefreshCw className="absolute top-0 right-0 h-20 w-20 text-secondary animate-rotate-slow" />
               </div>
@@ -151,7 +152,7 @@ export default function About() {
                 <p className="text-3xl font-groovy text-foreground">₹177B → ₹350B</p>
                 <p className="text-muted-foreground">Projected resale market growth by 2025</p>
               </div>
-              <div className="retro-card bg-sage/20 p-6 text-center">
+              <div className="retro-card bg-gradient-green text-center">
                 <Users className="h-10 w-10 text-olive mx-auto mb-3" />
                 <p className="text-3xl font-groovy text-foreground">62% Gen Z</p>
                 <p className="text-muted-foreground">Prefer buying preloved items</p>
@@ -190,14 +191,14 @@ export default function About() {
       </section>
 
       {/* Community Section */}
-      <section className="py-16 bg-gradient-warm">
+      <section className="py-16 bg-sand">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <Megaphone className="h-16 w-16 text-primary-foreground mx-auto mb-6 animate-bounce-gentle" />
-            <h2 className="text-4xl font-groovy text-primary-foreground mb-6">
+            <Megaphone className="h-16 w-16  mx-auto mb-6 animate-bounce-gentle" />
+            <h2 className="text-4xl font-groovy  mb-6">
               Built By Youth, For Youth
             </h2>
-            <p className="text-xl text-primary-foreground/90 mb-8">
+            <p className="text-xl /90 mb-8">
               Parivartā is powered by a community of conscious consumers, student ambassadors, and eco-warriors who believe in the power of reuse and sustainability.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
@@ -260,7 +261,7 @@ export default function About() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-olive text-cream py-12">
+      <footer className="bg-sage text-cream py-12">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
@@ -282,10 +283,10 @@ export default function About() {
             <div>
               <h4 className="font-semibold mb-4">Categories</h4>
               <ul className="space-y-2 text-sm">
-                <li><Link to="/marketplace?category=Clothing & Accessories" className="hover:text-primary transition-colors">Clothing</Link></li>
-                <li><Link to="/marketplace?category=Gadgets" className="hover:text-primary transition-colors">Gadgets</Link></li>
-                <li><Link to="/marketplace?category=Furniture" className="hover:text-primary transition-colors">Furniture</Link></li>
-                <li><Link to="/marketplace?category=Home & Kitchen" className="hover:text-primary transition-colors">Home & Kitchen</Link></li>
+                <li><Link to={categoryLink("Clothing & Accessories")} className="hover:text-primary transition-colors">Clothing</Link></li>
+                <li><Link to={categoryLink("Gadgets")} className="hover:text-primary transition-colors">Gadgets</Link></li>
+                <li><Link to={categoryLink("Furniture")} className="hover:text-primary transition-colors">Furniture</Link></li>
+                <li><Link to={categoryLink("Home & Kitchen")} className="hover:text-primary transition-colors">Home & Kitchen</Link></li>
               </ul>
             </div>
             <div>

@@ -50,11 +50,13 @@ All colors MUST be HSL.
     --sand: 40 30% 75%;  /* Sandy beige */
     
     /* Gradients - Retro sunburst & earth tones */
-    --gradient-hero: linear-gradient(135deg, hsl(16 65% 55%), hsl(45 75% 58%), hsl(120 15% 55%));
-    --gradient-sunburst: radial-gradient(circle, hsl(45 75% 58%), hsl(16 65% 55%), hsl(16 55% 45%));
+    --gradient-hero: linear-gradient(135deg, hsl(35, 57%, 35%), hsl(35 58% 42%), hsl(38, 72%, 67%));
+    --gradient-sunburst: radial-gradient(circle, hsl(24, 96%, 44%), hsl(46, 73%, 53%), hsl(41, 82%, 82%));
+    --gradient-sun: radial-gradient(circle, hsl(0, 0%, 95%),  hsl(44, 77%, 36%));
     --gradient-card: linear-gradient(180deg, hsl(35 30% 98%), hsl(35 25% 94%));
-    --gradient-accent: linear-gradient(90deg, hsl(120 15% 55%), hsl(85 25% 45%));
+    --gradient-accent: linear-gradient(90deg, hsl(120, 5%, 48%), hsl(136, 11%, 45%));
     --gradient-warm: linear-gradient(135deg, hsl(16 75% 50%), hsl(16 55% 45%));
+    --gradient-green: linear-gradient(135deg, hsl(120 15% 55%), hsl(85 25% 45%));
   }
 }
 
@@ -85,9 +87,6 @@ All colors MUST be HSL.
     font-family: 'Caveat', cursive;
   }
   
-  .retro-shadow {
-    box-shadow: 8px 8px 0px hsl(var(--rust));
-  }
   
   .retro-card {
     border-radius: var(--radius);

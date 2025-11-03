@@ -29,9 +29,12 @@ export const Navbar = () => {
     <nav className="sticky top-0 z-50 w-full border-b-4 border-primary/20 bg-card/98 backdrop-blur supports-[backdrop-filter]:bg-card/95 shadow-md">
       <div className="container mx-auto flex h-20 items-center justify-between px-4">
         <Link to="/" className="flex items-center space-x-3 group">
-          <div className="rounded-full bg-gradient-hero p-3 retro-shadow group-hover:scale-110 transition-transform">
-            <Home className="h-6 w-6 text-primary-foreground" />
-          </div>
+          {/* Use the public/logo.jpg as the navbar logo */}
+          <img
+            src="/logoo_.png"
+            alt="Parivartā logo"
+            className="h-16 w-16 rounded-full object-cover"
+          />
           <span className="text-3xl font-groovy bg-gradient-hero bg-clip-text text-transparent">
             Parivartā
           </span>
@@ -85,7 +88,7 @@ export const Navbar = () => {
               </Button>
             </>
           ) : (
-            <Button asChild className="retro-shadow">
+            <Button asChild className="">
               <Link to="/auth">Sign In</Link>
             </Button>
           )}

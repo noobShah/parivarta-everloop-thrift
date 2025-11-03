@@ -58,9 +58,11 @@ export default {
       backgroundImage: {
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-sunburst': 'var(--gradient-sunburst)',
+        'gradient-sun': 'var(--gradient-sun)',
         'gradient-card': 'var(--gradient-card)',
         'gradient-accent': 'var(--gradient-accent)',
         'gradient-warm': 'var(--gradient-warm)',
+        'gradient-green': 'var(--gradient-green)',
       },
       fontFamily: {
         groovy: ['Righteous', 'cursive'],
