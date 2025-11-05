@@ -58,6 +58,7 @@ export default {
       backgroundImage: {
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-sunburst': 'var(--gradient-sunburst)',
+        'gradient-about': 'var(--gradient-about)',
         'gradient-sun': 'var(--gradient-sun)',
         'gradient-card': 'var(--gradient-card)',
         'gradient-accent': 'var(--gradient-accent)',
