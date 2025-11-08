@@ -2,12 +2,12 @@ import { Navbar } from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { categoryLink } from "@/lib/utils";
-import { 
-  Heart, 
-  Target, 
-  Leaf, 
-  DollarSign, 
-  Shield, 
+import {
+  Heart,
+  Target,
+  Leaf,
+  DollarSign,
+  Shield,
   Users,
   TrendingUp,
   Megaphone,
@@ -46,7 +46,7 @@ export default function About() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      
+
       {/* Hero Section */}
       <section className="py-20 bg-gradient-about">
         <div className="container mx-auto px-4">
@@ -59,13 +59,16 @@ export default function About() {
                 Where Sustainability Meets Style
               </p>
               <p className="text-lg text-white">
-                Born from a vision to transform how India shops, Parivartā is more than a marketplace—it's a movement towards conscious consumption and environmental responsibility.
+                At Parivartā by Everloop Pvt. Ltd., we believe that every product deserves a second life. Our platform is a sustainable C2C (Consumer-to-Consumer) marketplace that enables people to buy, sell, and swap pre-loved items—from fashion and gadgets to furniture and décor. Rooted in the values of reuse, affordability, and conscious living, Parivartā empowers eco-aware youth to make sustainable choices without compromising on convenience or style. Through secure transactions, verified sellers, and a trusted delivery network, we’re building a digital community that drives India’s transition toward a circular economy—where change (Parivartan) starts with each of us.
               </p>
             </div>
             <div className="relative">
-              <div className="w-full aspect-square rounded-full bg-gradient-sun flex items-center justify-center">
-                <Heart className="h-32 w-32 text-primary animate-bounce-gentle" />
-                <RefreshCw className="absolute top-0 right-0 h-20 w-20 text-secondary animate-rotate-slow" />
+              <div className="w-full aspect-square rounded-full bg-gradient-sun flex items-center justify-center overflow-hidden">
+                {/* Image from public root (place about.jpg in public/) */}
+                <img src="/about.jpg" alt="About Parivartā" className="w-full h-full object-cover" />
+
+                {/* Decorative overlay icons retained for style */}
+                <RefreshCw className="absolute top-2 right-2 h-14 w-14 text-secondary animate-rotate-slow" />
               </div>
             </div>
           </div>
@@ -81,31 +84,37 @@ export default function About() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="retro-card bg-gradient-card p-8 border-4 border-sage">
               <div className="mb-4">
-                <div className="inline-block bg-sage text-sage-foreground px-4 py-2 rounded-full font-groovy text-sm">
-                  Our Mission
-                </div>
               </div>
               <Target className="h-12 w-12 text-sage mb-4" />
               <h2 className="text-3xl font-groovy text-foreground mb-4">
-                Democratize Sustainable Shopping
+                Our Mission
               </h2>
               <p className="text-muted-foreground">
-                To create India's most trusted C2C resale platform, making sustainable shopping accessible and affordable for Gen Z and Millennials across Tier-1 and Tier-2 cities.
+                To build a sustainable digital
+                marketplace that enables
+                product swapping and reuse,
+                reducing waste and promoting
+                conscious consumption
+                through innovation and
+                community.
               </p>
             </div>
-            
+
             <div className="retro-card bg-gradient-card p-8 border-4 border-terracotta">
               <div className="mb-4">
-                <div className="inline-block bg-terracotta text-primary-foreground px-4 py-2 rounded-full font-groovy text-sm">
-                  Our Vision
-                </div>
               </div>
               <Globe className="h-12 w-12 text-terracotta mb-4" />
               <h2 className="text-3xl font-groovy text-foreground mb-4">
-                A Circular Economy Future
+                Our Vision
               </h2>
               <p className="text-muted-foreground">
-                To become the heartbeat of India's circular economy, where every product gets a second chance, every transaction reduces waste, and every user becomes an eco-champion.
+                To be the leading global
+platform for consumer
+exchange, driving a
+circular economy where
+every product gets a
+second life.
+
               </p>
             </div>
           </div>
@@ -118,7 +127,7 @@ export default function About() {
           <h2 className="text-4xl font-groovy text-center mb-12 text-foreground">
             Why Parivartā?
           </h2>
-          
+
           <div className="max-w-4xl mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
               {/* Problem */}
@@ -150,12 +159,12 @@ export default function About() {
               <div className="retro-card bg-mustard/20 p-6 text-center">
                 <TrendingUp className="h-10 w-10 text-terracotta mx-auto mb-3" />
                 <p className="text-3xl font-groovy text-foreground">₹177B → ₹350B</p>
-                <p className="text-muted-foreground">Projected resale market growth by 2025</p>
+                <p className="text">Projected resale market growth by 2025</p>
               </div>
               <div className="retro-card bg-gradient-green text-center">
                 <Users className="h-10 w-10 text-olive mx-auto mb-3" />
                 <p className="text-3xl font-groovy text-foreground">62% Gen Z</p>
-                <p className="text-muted-foreground">Prefer buying preloved items</p>
+                <p className="text">Prefer buying preloved items</p>
               </div>
             </div>
           </div>
@@ -168,10 +177,10 @@ export default function About() {
           <h2 className="text-4xl font-groovy text-center mb-12 text-foreground">
             Our Values
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <div 
+              <div
                 key={index}
                 className="retro-card bg-card p-6 text-center hover:scale-105 transition-transform"
               >
@@ -228,18 +237,18 @@ export default function About() {
           <h2 className="text-4xl font-groovy text-center mb-12 text-foreground">
             Join the Movement
           </h2>
-          
+
           <div className="max-w-2xl mx-auto">
             <div className="relative">
               <div className="flex justify-center items-center mb-8">
                 <RefreshCw className="h-32 w-32 text-primary animate-rotate-slow" />
               </div>
-              
+
               <div className="text-center space-y-6">
                 <p className="text-xl text-muted-foreground">
                   Every item you buy or sell on Parivartā contributes to:
                 </p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="retro-card bg-sage/20 p-4">
                     <p className="text-2xl font-groovy text-sage mb-1">-2kg</p>

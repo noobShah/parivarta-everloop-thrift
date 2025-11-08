@@ -65,6 +65,10 @@ export default function Contact() {
           <p className="text-xl text-foreground/80 max-w-2xl mx-auto">
             Questions? Ideas? Just want to chat about sustainability?
           </p>
+          <div className="mt-8">
+            {/* Image from public root (place contact.jpg in public/) */}
+            <img src="/contact.jpg" alt="Contact Parivartā" className="mx-auto w-full max-w-md rounded-2xl object-cover shadow-lg" />
+          </div>
         </div>
       </section>
 
