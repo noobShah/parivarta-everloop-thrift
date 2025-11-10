@@ -163,6 +163,14 @@ export default function Cart() {
                       <span>Items ({cartItems.length})</span>
                       <span>₹{totalPrice.toFixed(2)}</span>
                     </div>
+                    <div className="flex justify-between text-muted-foreground">
+                      <span>Platform Fees</span>
+                      <span>₹0.0</span>
+                    </div>
+                    <div className="flex justify-between text-muted-foreground">
+                      <span>Delivery Fees</span>
+                      <span>₹0.0</span>
+                    </div>
                     <div className="flex justify-between text-xl font-bold pt-2 border-t border-border">
                       <span>Total</span>
                       <span className="text-primary">₹{totalPrice.toFixed(2)}</span>

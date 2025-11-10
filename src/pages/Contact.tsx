@@ -31,7 +31,7 @@ export default function Contact() {
   const faqs = [
     {
       question: "How does commission work?",
-      answer: "We charge a small 5-10% commission only when your item sells. No listing fees, no hidden charges. The commission helps us maintain the platform, verify sellers, and provide secure payment processing."
+      answer: "Our platform follows a dual commission structure to ensure transparency and fair transactions for both buyers and sellers.                  br        A listing commission of 5–10% is charged to the seller only when their item is successfully sold. This amount is automatically deducted from the final sale payment before it is transferred to the seller.           br        On the other hand, buyers are charged a platform fee of 10–20% on top of the item’s price, which helps maintain and enhance our marketplace experience. If the buyer opts for delivery, delivery charges will be added separately based on location and service type.             br        The commission helps us maintain the platform, verify sellers, and provide secure payment processing."
     },
     {
       question: "Is my payment secure?",
@@ -43,7 +43,7 @@ export default function Contact() {
     },
     {
       question: "How does delivery work?",
-      answer: "Buyers and sellers can coordinate delivery directly through our chat feature. You can arrange local pickup, ship via your preferred courier, or use cash on delivery for local transactions."
+      answer: "Buyers can choose between self-pickup or delivery at checkout.      br       If a buyer selects delivery, a delivery fee will be applied based on the location and type of delivery service chosen.     br         Alternatively, buyers can opt for self-pickup, where they personally collect the item from the seller — and as a reward, they’ll earn Eco Points, which can later be redeemed on our website for discounts or offers.Buyers and sellers can coordinate delivery directly through our chat feature."
     },
     {
       question: "What makes Parivartā eco-friendly?",
@@ -203,8 +203,8 @@ export default function Contact() {
                   <AccordionTrigger className="text-left font-groovy text-lg hover:text-primary">
                     {faq.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    {faq.answer}
+                  <AccordionContent className="text-muted-foreground whitespace-pre-line">
+                    {faq.answer.replace(/br\s*/g, "\n")}
                   </AccordionContent>
                 </AccordionItem>
               ))}
